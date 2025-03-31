@@ -1,24 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Frontend Boilerplate
 
-## Getting Started
+A reusable frontend boilerplate designed to accelerate project setup using Next.js, Clerk for authentication, TailwindCSS with ShadCN for UI, TypeScript for type safety, and a robust API client.
 
-First, run the development server:
+## 🚀 Tech Stack
 
+- **Framework**: [Next.js](https://nextjs.org) with App Router
+- **Authentication**: [Clerk](https://clerk.dev)
+- **UI Components**: [ShadCN UI](https://ui.shadcn.com) + TailwindCSS
+- **Language**: TypeScript
+- **Styling**: TailwindCSS
+
+## 📊 Folder Structure
+
+```
+/app
+  /components    # UI components
+  /hooks         # Custom hooks
+  /lib           # Utilities (e.g., api client)
+  /styles        # Tailwind styles & globals
+  /types         # TypeScript types
+```
+
+## 🔧 Getting Started
+
+1. Clone this repository
+2. Install dependencies:
+```bash
+npm install
+```
+3. Copy the `.env.example` file to create your own `.env.local`:
+```bash
+cp .env.example .env.local
+```
+4. Update the `.env.local` file with your own values:
+```env
+NEXT_PUBLIC_API_BASE_URL=https://your-backend-api.example.com
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+```
+5. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Authentication
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The boilerplate uses Clerk for authentication with a ready-made landing page featuring SignUpButton and SignInButton components.
+
+## 📁 API Client
+
+A robust API client is included in `/lib/api-client.ts` with the following features:
+
+- Uses `NEXT_PUBLIC_API_BASE_URL` from environment to connect to your backend
+- Adds `Authorization` header using Clerk JWT
+- Handles errors centrally with toast notifications
+- Type-safe with TypeScript
+
+Example usage:
+
+```ts
+const apiClient = useApiClient();
+
+// Get data from your backend API
+const data = await apiClient.get("/users/me", {
+  toastOnError: true,
+});
+```
+
+## 🚪 UI Components
+
+The boilerplate includes ShadCN UI with TailwindCSS for beautiful, customizable components.
+
+## 🚰 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Learn More
 
